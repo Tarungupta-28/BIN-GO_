@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌿BIN-GO — Smart Waste Reporting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════ AUTH SCREEN ═══════════════ -->
+<div id="auth-screen" class="auth-screen">
+  <div class="auth-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="auth-box">
+    <div class="auth-logo">
+      <span style="font-size:52px;display:block;margin-bottom:8px">🌿</span>
+      <h1>🌿BIN-GO</h1>
+      <p>Smart Waste Reporting &amp; Civic Intelligence Platform</p>
+    </div>
+    <div class="card auth-card">
+      <div class="tab-row">
+        <button class="tab-btn active" data-tab="login">Sign In</button>
+        <button class="tab-btn" data-tab="signup">Sign Up</button>
+      </div>
+      <div id="auth-err" class="err-msg hidden"></div>
+      <form id="auth-form" autocomplete="off">
+        <div id="name-wrap" class="field-group hidden">
+          <label>Full Name</label>
+          <input id="inp-name" type="text" placeholder="Your full name"/>
+        </div>
+        <div class="field-group">
+          <label>Email Address</label>
+          <input id="inp-email" type="email" placeholder="you@example.com"/>
+        </div>
+        <div class="field-group">
+          <label>Password</label>
+          <input id="inp-pass" type="password" placeholder="••••••••"/>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="auth-btn">Sign In</button>
+      </form>
+      <div class="demo-hint">
+        <strong>Demo accounts:</strong><br/>
+        arjun@demo.com / demo123 &nbsp;|&nbsp; admin@demo.com / admin123<br/>
+        <span style="opacity:0.75;font-size:11px">Or sign up with any email — no server needed!</span>
+      </div>
+    </div>
+    <button id="auth-theme-btn" class="theme-pill">🌙 Dark Mode</button>
+  </div>
+</div>
+
+<!-- ═══════════════ MAIN APP ═══════════════ -->
+<div id="app" class="app hidden">
+
+  <!-- Sidebar overlay -->
+  <div id="sb-overlay" class="sb-overlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sb-inner">
+      <div class="sb-logo-row">
+        <div>
+          <div class="sb-brand">🌿BIN-GO</div>
+          <div class="sb-tagline">Civic Intelligence Platform</div>
+        </div>
+        <button id="sb-close" class="icon-btn light">
+          <svg viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="sb-user-row">
+        <div class="avatar" id="sb-avatar">A</div>
+        <div>
+          <div class="sb-username" id="sb-username">User</div>
+          <div class="sb-pts" id="sb-pts">⭐ 0 pts · citizen</div>
+        </div>
+      </div>
+      <nav class="sb-nav">
+        <button class="nav-item active" data-page="dashboard">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          Dashboard
+        </button>
+        <button class="nav-item" data-page="report">
+          <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Report Waste
+        </button>
+        <button class="nav-item" data-page="map">
+          <svg viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          Live Map
+        </button>
+        <button class="nav-item" data-page="leaderboard">
+          <svg viewBox="0 0 24 24"><path d="M18 2H6v7a6 6 0 0012 0V2z"/><path d="M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M6 9H4.5a2.5 2.5 0 010-5H6M18 9h1.5a2.5 2.5 0 000-5H18"/></svg>
+          Leaderboard
+        </button>
+        <button class="nav-item" data-page="rewards">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Rewards
+        </button>
+        <button class="nav-item" data-page="ngo-support">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          NGO Support
+        </button>
+        <button class="nav-item" data-page="adopt">
+          <svg viewBox="0 0 24 24"><path d="M3 12l2-2 7-7 7 7-2 2M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Adopt a Street
+        </button>
+        <button class="nav-item admin-only hidden" data-page="admin">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Admin Panel
+        </button>
+        <button class="nav-item" data-page="profile">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My Profile
+        </button>
+      </nav>
+      <div class="sb-footer">
+        <button id="theme-toggle" class="sb-foot-btn">🌙 Dark Mode</button>
+        <button id="logout-btn" class="sb-foot-btn">↩ Sign Out</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-wrap">
+    <header class="topbar">
+      <button id="menu-btn" class="icon-btn">
+        <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+      <span class="topbar-brand">🌿BIN-GO</span>
+      <div class="topbar-right">
+        <button id="topbar-theme" class="icon-btn" title="Toggle dark mode">🌙</button>
+        <div class="avatar topbar-av" id="topbar-avatar" style="cursor:pointer">A</div>
+      </div>
+    </header>
+    <main id="page-content" class="page-content"></main>
+  </div>
+</div>
+
+<!-- App scripts load first so auth/login is never blocked by Maps -->
+<script src="js/constants.js"></script>
+<script src="js/state.js"></script>
+<script src="js/rewards.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/app.js"></script>
+<script src="js/effects.js"></script>
+
+<!-- Google Maps API loads async so it never blocks login/signup -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdsBecTjRh2CwDPSthmSmr5TkOojKw2Jc&libraries=visualization&callback=initGoogleMapsReady" async defer></script>
+
+</body>
+</html>
